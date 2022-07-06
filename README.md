@@ -259,3 +259,53 @@ SELECT SUBSTRING(column_name1, 1, 2) FROM table_name;
 ```sql
 SELECT SUBSTRING('Hello World', 1, 5) FROM table_name;
 ```
+
+---
+
+## REPLACE in SQL
+
+```sql
+SELECT REPLACE(column_name1, 'old', 'new') FROM table_name;
+```
+
+```sql
+SELECT REPLACE('Hello World', 'Hello', 'Hey') FROM table_name;
+```
+
+---
+
+## REVERSE in SQL
+
+```sql
+SELECT REVERSE(column_name1) FROM table_name;
+```
+
+```sql
+SELECT REVERSE('Hello World') FROM table_name;
+
+SELECT REVERSE('Hello World');
+```
+
+---
+
+## CHAR Length in SQL
+
+```sql
+SELECT CHAR_LENGHT(column_name);
+```
+
+---
+
+## UPPERCASE in SQL
+
+```sql
+SELECT UPPER(column_name);
+```
+
+---
+
+## LOWERCASE in SQL
+
+```sql
+SELECT LOWER(column_name);
+```
