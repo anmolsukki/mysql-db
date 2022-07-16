@@ -309,3 +309,53 @@ SELECT UPPER(column_name);
 ```sql
 SELECT LOWER(column_name);
 ```
+
+---
+
+## REMOVE duplicate using DISTINCT in SQL
+
+```sql
+SELECT DISTINCT first_name, last_name FROM books;
+```
+
+```sql
+SELECT DISTINCT CONCAT(first_name, ' ', last_name) FROM books;
+```
+
+---
+
+## Sorting Data with ORDER BY in SQL
+
+```sql
+SELECT first_name, last_name FROM books ORDER BY first_name;
+```
+
+```sql
+SELECT first_name, last_name FROM books ORDER BY first_name DESC;
+```
+
+```sql
+SELECT first_name, last_name FROM books ORDER BY 2;
+```
+
+<i>NOTE: 2 is refering last_name</i>
+
+```sql
+SELECT first_name, last_name FROM books ORDER BY last_name, first_name;
+```
+
+---
+
+## LIMIT in SQL
+
+```sql
+SELECT first_name, last_name FROM books LIMIT 3;
+```
+
+```sql
+SELECT first_name, last_name FROM books ORDER BY first_name LIMIT 3;
+```
+
+```sql
+SELECT first_name, last_name FROM books LIMIT 0,5;
+```
