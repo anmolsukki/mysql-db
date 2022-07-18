@@ -359,3 +359,125 @@ SELECT first_name, last_name FROM books ORDER BY first_name LIMIT 3;
 ```sql
 SELECT first_name, last_name FROM books LIMIT 0,5;
 ```
+
+---
+
+## Better Search LIKE in SQL
+
+```sql
+SELECT first_name FROM books WHERE last_name LIKE '%Anm%';
+```
+
+```sql
+SELECT book_name FROM books WHERE stock_quantity LIKE '__';
+```
+
+```sql
+SELECT book_name FROM books WHERE stock_quantity LIKE '(___)____-___';
+```
+
+<i>NOTE: search mobile like (123)6545-654</i>
+
+```sql
+SELECT book_name FROM books WHERE stock_quantity LIKE '%\_%';
+```
+
+```sql
+SELECT book_name FROM books WHERE stock_quantity LIKE '%\%%';
+```
+
+<i>NOTE: search underscore or percentage</i>
+
+---
+
+## COUNT in SQL
+
+```sql
+SELECT COUNT(*) FROM books;
+```
+
+```sql
+SELECT COUNT(first_name) FROM books;
+```
+
+```sql
+SELECT COUNT(DISTINCT first_name, last_name) FROM books;
+```
+
+<i>NOTE: Count unique name</i>
+
+```sql
+SELECT COUNT(first_name) FROM books WHERE title LIKE '%the%';
+```
+
+---
+
+## Group By in SQL (Remove duplicate)
+
+```sql
+SELECT first_name, last_name FROM books GROUP BY author_lname, last_name;
+```
+
+```sql
+SELECT first_name, COUNT(*) FROM books GROUP BY last_name;
+```
+
+---
+
+## MIN and MAX in SQL
+
+```sql
+SELECT MIN(released_year) FROM books;
+```
+
+```sql
+SELECT MAX(released_year) FROM books;
+```
+
+<u>Sub Query</u>
+
+```sql
+SELECT title FROM books WHERE pages = 632;
+```
+
+```sql
+SELECT title FROM books WHERE pages = (SELECT Min(pages) FROM books);
+```
+
+<i>NOTE: Find min pages with title</i>
+
+------- OR -------
+
+```sql
+SELECT title FROM books ORDER BY pages ASC LIMIT 1;
+```
+
+```sql
+SELECT author_fname, author_lname, Min(released_year) FROM   books GROUP  BY author_lname, author_fname;
+```
+
+<i>NOTE: MIN, MAX with GROUP BY</i>
+
+---
+
+## Sum Function in SQL
+
+```sql
+SELECT SUM(pages) FROM books;
+```
+
+```sql
+SELECT author_fname, author_lname, Sum(pages) FROM books GROUP BY author_lname, author_fname;
+```
+
+---
+
+## AVG Function in SQL
+
+```sql
+SELECT AVG(pages) FROM books;
+```
+
+```sql
+SELECT author_fname, author_lname, AVG(pages) FROM books GROUP BY author_lname, author_fname;
+```
