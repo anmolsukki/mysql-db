@@ -52,6 +52,10 @@ SELECT DATABASE();
 CREATE TABLE table_name (column_name data_type, column_name data_type);
 ```
 
+```sql
+CREATE TABLE books (first_name VARCHAR(10), quantity INT);
+```
+
 ---
 
 ## Show tables
