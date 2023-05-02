@@ -1,3 +1,25 @@
+## mysql run on terminal
+
+Note: Add this line on ~/.zshrc OR ~/.bash_profile File
+
+By Running
+
+```zsh
+open ~/.zshrc
+
+open ~/.bash_profile
+```
+
+```
+export PATH=${PATH}:/usr/local/mysql/bin
+```
+
+```zsh
+mysql -u root -p
+```
+
+After that enter password
+
 ## Start databse CLI
 
 ```sql
