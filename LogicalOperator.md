@@ -14,6 +14,10 @@ SELECT * FROM books WHERE release_year != 2021;
 SELECT * FROM books WHERE title NOT LIKE '%Harry%';
 ```
 
+```sql
+SELECT * FROM books WHERE title LIKE 'Da%';            // Output: [start from ]: Da
+```
+
 ### 3. Greater Than (>) in MySQL
 
 ```sql
@@ -64,7 +68,7 @@ SELECT * FROM books WHERE author_name = 'J.K. Rowling' OR author_name = 'Carver'
 SELECT * FROM books WHERE author_name IN ('J.K. Rowling', 'Carver');
 ```
 
-### 10. IN in MySQL
+### 10. NOT IN in MySQL
 
 ```sql
 SELECT * FROM books WHERE author_name != 'J.K. Rowling' AND author_name != 'Carver';
@@ -89,7 +93,7 @@ SELECT * FROM books WHERE release_year >= 2000 AND release_year % 2 != 0;
 ### 12. CASE in MySQL
 
 ```sql
-SELECT title, name, CASE WHEN release_year >= 2000 THEN 'New Session Books' ELSE 'Old Session Books' END AS Session FROM books;
+SELECT title, name, CASE WHEN release_year >= 2000 THEN 'New Session Books' WHEN release_year >= 2010 THEN 'Modern Session Books' ELSE 'Old Session Books' END AS Session FROM books;
 ```
 
 ### 13. Start with in MySQL

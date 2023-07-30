@@ -10,9 +10,25 @@ CREATE TABLE books (first_name VARCHAR(10), gender CHAR(1), quantity INT);
 
 <strong>Note:</strong> <i>CHAR is for fixed length text</i>
 
----
+### 2. INT
 
-### 2. DECIMAL
+```sql
+CREATE TABLE books (first_name VARCHAR(10), gender CHAR(1), quantity INT UNSIGNED);
+```
+
+| Type        | Storage (Bytes) | Minimum Value SIGNED | Minimum Value UNSIGNED | Maximun Value SIGNED | Maximun Value UNSIGNED |
+| ----------- | --------------- | -------------------- | ---------------------- | -------------------- | ---------------------- |
+| `TINYINT`   | 1               | -128                 | 0                      | 127                  | 255                    |
+| `SMALLINT`  | 2               | -32768               | 0                      | 32767                | 65535                  |
+| `MEDIUMINT` | 3               | -8388608             | 0                      | 8388607              | 16777215               |
+| `INT`       | 4               | -2147483648          | 0                      | 2147483647           | 4294967295             |
+| `BIGINT`    | 8               | -2<sup>63</sup>      | 0                      | 2<sup>63</sup>-1     | 2<sup>64</sup>-1       |
+
+<strong>Note:</strong> <i>UNSIGNED </i> means only positive number
+
+<strong>Note:</strong> <i>SIGNED </i> means only negative number
+
+### 3. DECIMAL
 
 ```sql
 CREATE TABLE books (price DECIMAL(5, 2));
@@ -38,10 +54,19 @@ INSERT INTO books (price) VALUES (1.9999);           // 2.00
 
 ---
 
-### 3. FLOAT
+### 4. FLOAT
+
+| Data Type | Memory Needed | Precision Issues |
+| --------- | ------------- | ---------------- |
+| `FLOAT`   | 4 Bytes       | ~7 Digits        |
+| `DOUBLE`  | 8 Bytes       | ~15 Digits       |
 
 ```sql
 CREATE TABLE books (price FLOAT);
+```
+
+```sql
+CREATE TABLE currency (price DOUBLE);
 ```
 
 ```sql
@@ -54,7 +79,7 @@ INSERT INTO books (price) VALUES (8877665544.45);           // 8877670000
 
 ---
 
-### 4. Dates & Times
+### 5. Dates & Times
 
 ```sql
 CREATE TABLE student (name VARCHAR(25), birthdate DATE, birthtime TIME, birth_datetime DATETIME);
@@ -137,6 +162,10 @@ SELECT birthdate, birthdate + INTERVAL 15 MONTH + INTERVAL 10 HOUR FROM student;
 ```
 
 <u>Timestamp in SQL</u>
+
+```sql
+CREATE TABLE comments (content VARCHAR(100), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
+```
 
 ```sql
 CREATE TABLE comments (content VARCHAR(100), created_at TIMESTAMP DEFAULT NOW(), updated_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP);

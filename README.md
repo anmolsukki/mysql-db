@@ -112,6 +112,8 @@ DROP TABLE table_name;
 
 ```sql
 INSERT INTO table_name(column_name1, column_name2) VALUES(value1, value2);
+
+INSERT INTO table_name(name, column_name2) VALUES('mario\'s', value2);
 ```
 
 ---
@@ -270,6 +272,8 @@ SELECT CONCAT(firstname, lastname) FROM authors AS fullname;
 
 ## CONCAT_WS in SQL
 
+Note: First paramete is seprator that is seprate between column
+
 ```sql
 SELECT CONCAT_WS(' - ', column_name1, column_name2, column_name3) FROM table_name;
 ```
@@ -278,12 +282,26 @@ SELECT CONCAT_WS(' - ', column_name1, column_name2, column_name3) FROM table_nam
 
 ## SUBSTRING in SQL
 
+Note: SUBSTR() is synonyms of SUBSTRING
+
 ```sql
 SELECT SUBSTRING(column_name1, 1, 2) FROM table_name;
 ```
 
 ```sql
-SELECT SUBSTRING('Hello World', 1, 5) FROM table_name;
+SELECT SUBSTRING('Hello World', 1, 4) FROM table_name;           // Output: Hell
+```
+
+```sql
+SELECT SUBSTRING('Hello World', 5) FROM table_name;           // Output: o World
+```
+
+```sql
+SELECT SUBSTRING('Hello World', 7, 2) FROM table_name;           // Output: Wo
+```
+
+```sql
+SELECT SUBSTRING('Hello World', -3) FROM table_name;           // Output: rld
 ```
 
 ---
@@ -338,6 +356,64 @@ SELECT LOWER(column_name);
 
 ---
 
+## Insert within character in SQL
+
+```sql
+SELECT INSERT('Hello World', 6, 0, ' there ');           // Output: Hell0 there World
+```
+
+```sql
+SELECT INSERT('Hello World', 4, 4, ' there ');           // Output: Hell there orld
+```
+
+---
+
+## Return Left Most character in SQL
+
+```sql
+SELECT LEFT('foobar', 5);               // Output: fooba
+```
+
+---
+
+## Return Right Most character in SQL
+
+```sql
+SELECT RIGHT('foobar', 5);               // Output: oobar
+```
+
+---
+
+## Same string repeat in number of times in SQL
+
+```sql
+SELECT REPEAT('Hello ', 3);               // Output: Hello Hello Hello
+```
+
+---
+
+## TRIM in SQL
+
+Note: Remove all <i>remstr</i> from prefix or suffix in string
+
+```sql
+SELECT TRIM('  Hello  ');               // Output: Hello
+```
+
+```sql
+SELECT TRIM(LEADING '.' FROM '.....Hello...');               // Output: Hello...
+```
+
+```sql
+SELECT TRIM(TRAILING '.' FROM '.....Hello...');               // Output: .....Hello
+```
+
+```sql
+SELECT TRIM(BOTH '.' FROM '.....Hello...');               // Output: Hello
+```
+
+---
+
 ## REMOVE duplicate using DISTINCT in SQL
 
 ```sql
@@ -370,6 +446,10 @@ SELECT first_name, last_name FROM books ORDER BY 2;
 SELECT first_name, last_name FROM books ORDER BY last_name, first_name;
 ```
 
+```sql
+SELECT CONCAT(first_name, ' ', last_name) as username  FROM books ORDER BY username;
+```
+
 ---
 
 ## LIMIT in SQL
@@ -393,6 +473,8 @@ SELECT first_name, last_name FROM books LIMIT 0,5;
 ```sql
 SELECT first_name FROM books WHERE last_name LIKE '%Anm%';
 ```
+
+NOTE: \ repersents character
 
 ```sql
 SELECT book_name FROM books WHERE stock_quantity LIKE '__';
@@ -466,6 +548,8 @@ SELECT MAX(released_year) FROM books;
 SELECT title FROM books WHERE pages = 632;
 ```
 
+Note: Subquery for get MIN number of Pages from books.
+
 ```sql
 SELECT title FROM books WHERE pages = (SELECT Min(pages) FROM books);
 ```
@@ -479,7 +563,7 @@ SELECT title FROM books ORDER BY pages ASC LIMIT 1;
 ```
 
 ```sql
-SELECT author_fname, author_lname, Min(released_year) FROM   books GROUP  BY author_lname, author_fname;
+SELECT author_fname, author_lname, COUNT(*) as books_written, Min(released_year) FROM   books GROUP  BY author_lname, author_fname;
 ```
 
 <i>NOTE: MIN, MAX with GROUP BY</i>
